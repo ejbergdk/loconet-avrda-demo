@@ -3,7 +3,7 @@
  *
  * Created: 04-07-2021 15:17:45
  *  Author: Mikael Ejberg Pedersen
- */ 
+ */
 
 #include <avr/io.h>
 #include "ticks.h"
@@ -11,7 +11,7 @@
 
 #define COLLISION_TICKS (TICKS_PER_SEC / 4)
 
-static ticks_t coll_time = 0;
+static ticks_t  coll_time = 0;
 
 
 void collision_check_init(void)
