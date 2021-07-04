@@ -3,6 +3,13 @@
  *
  * Created: 04-07-2021 15:17:45
  *  Author: Mikael Ejberg Pedersen
+ *
+ * If CCLDEBUG is defined, a very short pulse is sent on port D3 in case
+ * of a collision (this is part of the loconet-avrda library). This is fine
+ * for a logic analyzer, but not for visual indication on a LED.
+ *
+ * This file adds a longer pulse (250 ms) on port D3 whenever a collision
+ * happens, but only if CCLDEBUG is NOT defined.
  */
 
 #include <avr/io.h>
