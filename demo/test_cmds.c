@@ -37,7 +37,7 @@ static void in_timer_cb(void *ctx)
     adr = p->adr;
     free(p);
 
-    printf_P(PSTR("Sending track free on %u\n"), adr);
+    printf_P(PSTR("Sending track free: %u\n"), adr);
 
     if (ln_tx_opc_input_rep(adr, false, NULL, NULL))
         printf_P(PSTR("Out of lnpackets\n"));
@@ -82,6 +82,8 @@ void in_cmd(uint8_t argc, char *argv[])
     else
         p->delay = 2 * TICKS_PER_SEC;   // Default 2 seconds
 
+    printf_P(PSTR("Sending track occupied: %u\n"), p->adr);
+
     if (ln_tx_opc_input_rep(p->adr, true, in_cb, p))
         printf_P(PSTR("Out of lnpackets\n"));
 }
@@ -109,11 +111,11 @@ static void sw_timer_cb(void *ctx)
     uint16_t        adr;
     uint8_t         dir;
 
-    printf_P(PSTR("Sending sw off on %u\n"), p->adr);
-
     adr = p->adr;
     dir = p->dir;
     free(p);
+
+    printf_P(PSTR("Sending sw off: %u %c\n"), adr, dir ? 'G' : 'R');
 
     if (ln_tx_opc_sw_req(adr, dir, false, NULL, NULL))
         printf_P(PSTR("Out of lnpackets\n"));
@@ -165,6 +167,8 @@ void sw_cmd(uint8_t argc, char *argv[])
         p->dir = 1;
         break;
     }
+
+    printf_P(PSTR("Sending sw on: %u %c\n"), p->adr, p->dir ? 'G' : 'R');
 
     if (ln_tx_opc_sw_req(p->adr, p->dir, true, sw_cb, p))
         printf_P(PSTR("Out of lnpackets\n"));
