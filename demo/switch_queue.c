@@ -52,7 +52,7 @@ static void sw_cb(void *ctx, hal_ln_result_t res)
     {
         // OPC_SW_REQ sent. Activate next state.
         last_activity = ticks_get();
-        state = *(swq_state_t *) ctx;
+        state = *(swq_state_t *)ctx;
     }
     else
     {
