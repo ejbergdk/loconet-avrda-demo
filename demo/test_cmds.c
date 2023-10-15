@@ -50,10 +50,15 @@ static void in_cb(void *ctx, hal_ln_result_t res)
     cmd_in_t       *p = (cmd_in_t *) ctx;
 
     if (res == HAL_LN_SUCCESS)
+    {
         // OPC_INPUT_REP track occupied sent. Wait before sending track free.
-        timer_add(p->delay, in_timer_cb, p);
-    else
-        printf_P(PSTR("Tx fail\n"));
+        if (timer_add(p->delay, in_timer_cb, p) == 0)
+            return;
+    }
+
+    // An error happened. Cleanup
+    free(p);
+    printf_P(PSTR("Tx fail\n"));
 }
 
 const __flash char cmdin_name[] = "in";
@@ -87,7 +92,10 @@ void in_cmd(uint8_t argc, char *argv[])
     printf_P(PSTR("Sending track occupied: %u\n"), p->adr);
 
     if (ln_tx_opc_input_rep(p->adr, true, in_cb, p))
+    {
+        free(p);
         printf_P(PSTR("Out of lnpackets\n"));
+    }
 }
 
 
