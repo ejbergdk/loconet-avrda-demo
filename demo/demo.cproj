@@ -61,6 +61,7 @@
   <Value>LNMONITOR</Value>
   <Value>LNPACKET_SIZE_MAX=6</Value>
   <Value>LNPACKET_CNT=16</Value>
+  <Value>EXTXTAL</Value>
   <Value>NDEBUG</Value>
 </ListValues></avrgcc.compiler.symbols.DefSymbols>
   <avrgcc.compiler.directories.IncludePaths><ListValues><Value>%24(PackRepoDir)\atmel\AVR-Dx_DFP\2.2.253\include\</Value></ListValues></avrgcc.compiler.directories.IncludePaths>
@@ -89,6 +90,7 @@
   <Value>LNMONITOR</Value>
   <Value>LNPACKET_SIZE_MAX=6</Value>
   <Value>LNPACKET_CNT=16</Value>
+  <Value>EXTXTAL</Value>
   <Value>DEBUG</Value>
   <Value>LNSTAT</Value>
 </ListValues></avrgcc.compiler.symbols.DefSymbols>
