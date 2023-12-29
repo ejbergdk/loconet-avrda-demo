@@ -11,9 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "switch_queue.h"
-#include "test_cmds.h"
 #include "ticks.h"
 #include "timer.h"
+#include "lib/avr-shell-cmd/cmd.h"
 #include "lib/loconet-avrda/ln_tx.h"
 
 
@@ -61,10 +61,7 @@ static void in_cb(void *ctx, hal_ln_result_t res)
     printf_P(PSTR("Tx fail\n"));
 }
 
-const __flash char cmdin_name[] = "in";
-const __flash char cmdin_help[] = "Send OPC_INPUT_REP";
-
-void in_cmd(uint8_t argc, char *argv[])
+static void inCmd(uint8_t argc, char *argv[])
 {
     cmd_in_t       *p;
 
@@ -98,6 +95,8 @@ void in_cmd(uint8_t argc, char *argv[])
     }
 }
 
+CMD(in, "Send OPC_INPUT_REP");
+
 
 /********************************************************************/
 
@@ -107,11 +106,7 @@ void in_cmd(uint8_t argc, char *argv[])
  *
  * Sends an OPC_SW_REQ .... TODO
  */
-
-const __flash char cmdsw_name[] = "sw";
-const __flash char cmdsw_help[] = "Send OPC_SW_REQ";
-
-void sw_cmd(uint8_t argc, char *argv[])
+static void swCmd(uint8_t argc, char *argv[])
 {
     uint16_t        adr;
     bool            dir;
@@ -144,3 +139,5 @@ void sw_cmd(uint8_t argc, char *argv[])
 
     switch_queue_add(adr, dir);
 }
+
+CMD(sw, "Send OPC_SW_REQ");

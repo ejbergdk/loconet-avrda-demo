@@ -12,8 +12,8 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <util/atomic.h>
-#include "cmd.h"
 #include "term.h"
+#include "lib/avr-shell-cmd/cmd.h"
 
 #define BAUDRATE 115200UL
 #define BAUD_REG ((64 * F_CPU + 8 * BAUDRATE) / (16 * BAUDRATE))
