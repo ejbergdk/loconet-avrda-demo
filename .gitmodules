@@ -1,3 +1,6 @@
 [submodule "demo/lib/loconet-avrda"]
 	path = demo/lib/loconet-avrda
 	url = https://github.com/ejbergdk/loconet-avrda.git
+[submodule "demo/lib/avr-shell-cmd"]
+	path = demo/lib/avr-shell-cmd
+	url = https://github.com/ejbergdk/avr-shell-cmd.git
